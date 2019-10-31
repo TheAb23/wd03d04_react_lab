@@ -43,7 +43,10 @@ class App extends Component {
             onFaveToggle={this.handleFaveToggle}
           />
         </div>
-        <FilmDetails current={this.state.current} />
+        <div className="film-details">
+          <h1 className="section-title">DETAILS</h1>
+          <FilmDetails current={this.state.current} />
+      </div>
       </div>
     );
   }

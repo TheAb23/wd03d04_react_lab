@@ -16,7 +16,7 @@ export default class FilmListing extends Component {
     console.log(filter);
   };
   render() {
-    let allFilms = this.props.db.map((film, index) => (
+    let allFilms = this.props.films.map((film, index) => (
       <FilmRow
         filmTitle={film.title}
         filmId={film.id}
@@ -35,7 +35,7 @@ export default class FilmListing extends Component {
             onClick={() => this.handleFilterClick("all")}
           >
             ALL
-            <span className="section-count">{this.props.db.length}</span>
+            <span className="section-count">{this.props.films.length}</span>
           </div>
           <div
             className={`film-list-filter ${

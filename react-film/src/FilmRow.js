@@ -6,6 +6,7 @@ export default class FilmRow extends Component {
     console.log(`Fetching details for ${film}`);
   };
   render() {
+    console.log(this.props.filmPoster)
     return (
       <div className="film-row" onClick={this.handleDetailsClick}>
         <FilmPoster filmPoster={this.props.filmPoster} />
