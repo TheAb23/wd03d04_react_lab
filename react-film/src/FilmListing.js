@@ -1,7 +1,6 @@
 import React from "react";
 import FilmRow from "./FilmRow";
-import { Component } from "react";
-
+import { Component } from "react"
 export default class FilmListing extends Component {
   constructor(props) {
     super(props);
@@ -10,18 +9,27 @@ export default class FilmListing extends Component {
     };
   }
   handleFilterClick = filter => {
-    this.setState ({
-      filter: filter
+    this.setState({
+      //es 6 syntax for making a key with the same name as the variable
+      filter
     });
     console.log(filter);
   };
   render() {
-    let allFilms = this.props.films.map((film, index) => (
+    const allFilms = this.props.films.map((film, index) => (
       <FilmRow
-        filmTitle={film.title}
-        filmId={film.id}
-        filmDate={new Date().getFullYear(film.release_date)}
-        filmPoster={film.poster_path}
+        film={film}
+        key={film.id}
+        onFaveToggle={() => this.props.onFaveToggle(film)}
+        isFave={this.props.faves.includes(film)}
+      />
+    ));
+    const faves = this.props.faves.map((film, index) => (
+      <FilmRow
+        film={film}
+        key={film.id}
+        onFaveToggle={() => this.props.onFaveToggle(film)}
+        isFave={this.props.faves.includes(film)}
       />
     ));
     return (
@@ -44,11 +52,11 @@ export default class FilmListing extends Component {
             onClick={() => this.handleFilterClick("faves")}
           >
             FAVES
-            <span className="section-count">0</span>
+            <span className="section-count">{this.props.faves.length}</span>
           </div>
         </div>
-
-        {allFilms}
+​
+        {this.state.filter === "faves" ? faves : allFilms}
       </div>
     );
   }
